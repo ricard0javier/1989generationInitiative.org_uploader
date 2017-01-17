@@ -1,6 +1,4 @@
 apply plugin: 'java'
-apply plugin: 'idea'
-apply plugin: 'application'
 
 sourceCompatibility = 1.8
 
@@ -8,21 +6,28 @@ version = '1.0'
 
 repositories {
     mavenCentral()
-    jcenter()
 }
 
-mainClassName = 'com.thecodestein.Application'
-
 dependencies {
-    compile "ch.qos.logback:logback-classic:1.1.7"
-    compile "org.slf4j:slf4j-api:1.7.21"
-    compile "org.projectlombok:lombok:1.16.10"
-    compile "com.google.guava:guava:20.0-rc1"
-    compile "org.springframework.boot:spring-boot-starter-web:1.4.1.RELEASE"
-    compile 'io.deepstream:deepstream.io-client-java:0.8'
+//    compile "ch.qos.logback:logback-classic:1.1.7"
+//    compile "org.slf4j:slf4j-api:1.7.21"
+//    compile "org.projectlombok:lombok:1.16.10"
+//    compile "com.google.guava:guava:20.0-rc1"
+    compile "com.amazonaws:aws-lambda-java-core:1.1.0"
+    compile "com.amazonaws:aws-lambda-java-events:1.1.0"
     testCompile "junit:junit:4.11"
 }
 
 task wrapper(type: Wrapper) {
     gradleVersion = '2.0'
 }
+
+task buildZip(type: Zip) {
+    from compileJava
+    from processResources
+    into('lib') {
+        from configurations.runtime
+    }
+}
+
+build.dependsOn buildZip
