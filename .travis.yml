@@ -5,6 +5,12 @@ jdk:
 
 script: gradle build
 
+
+after_success:
+    - pip install --user awscli
+    - export PATH=$PATH:$HOME/.local/bin
+    - sh ./deploy.sh
+
 before_cache:
     - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
     - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
@@ -13,12 +19,3 @@ cache:
     directories:
         - $HOME/.gradle/caches/
         - $HOME/.gradle/wrapper/
-
-deploy:
-    skip_cleanup: true
-    provider: lambda
-    function_name: "1989generationinitiative_uploader"
-    role: "arn:aws:iam::430132907316:role/initiativeRole"
-    handler_name: "org.generationinitiative.uploader.Hello"
-    access_key_id: "$AWS_ACCESS_KEY_ID"
-    secret_access_key: "$AWS_SECRET_ACCESS_KEY"
