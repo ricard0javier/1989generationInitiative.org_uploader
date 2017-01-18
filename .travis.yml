@@ -1,0 +1,19 @@
+language: java
+
+script: $HOME/gradlew build
+
+before_cache:
+    - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+    - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+
+cache:
+    directories:
+        - $HOME/.gradle/caches/
+        - $HOME/.gradle/wrapper/
+
+deploy:
+    skip_cleanup: true
+    provider: lambda
+    function_name: "1989generationinitiative_uploader"
+    role: "arn:aws:iam::430132907316:role/initiativeRole"
+    handler_name: "org.generationinitiative.uploader.Hello"
