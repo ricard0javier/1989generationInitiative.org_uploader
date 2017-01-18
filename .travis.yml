@@ -20,3 +20,5 @@ deploy:
     function_name: "1989generationinitiative_uploader"
     role: "arn:aws:iam::430132907316:role/initiativeRole"
     handler_name: "org.generationinitiative.uploader.Hello"
+    access_key_id: "$AWS_ACCESS_KEY_ID"
+    secret_access_key: "$AWS_SECRET_ACCESS_KEY"
