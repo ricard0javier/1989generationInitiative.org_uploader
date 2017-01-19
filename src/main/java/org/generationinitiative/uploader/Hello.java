@@ -1,6 +1,7 @@
 package org.generationinitiative.uploader;
 
 import com.amazonaws.services.lambda.runtime.Context;
+import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.util.StringInputStream;
@@ -13,7 +14,7 @@ import org.generationinitiative.uploader.dto.ResultDTO;
 
 import java.io.UnsupportedEncodingException;
 
-public class Hello {
+public class Hello implements RequestHandler<RequestDTO, ResultDTO> {
 
     private static final int STATUS_UNAUTHORISED = 401;
     private static final String SECRET = System.getenv("JWT_CLIENT_SECRET");

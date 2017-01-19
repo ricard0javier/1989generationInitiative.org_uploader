@@ -8,5 +8,5 @@ aws lambda create-function \
     --role arn:aws:iam::430132907316:role/initiativeRole \
     --handler org.generationinitiative.uploader.Hello \
     --runtime java8 \
-    --environment Variables={JWT_CLIENT_SECRET=$JWT_CLIENT_SECRET}
+    --environment Variables={JWT_CLIENT_SECRET=To_Be_Replaced}
 
