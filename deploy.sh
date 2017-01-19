@@ -1,5 +1,6 @@
 aws lambda delete-function \
-    --function-name arn:aws:lambda:eu-central-1:430132907316:function:1989generationinitiative_uploader
+    --region eu-central-1 \
+    --function-name 1989generationinitiative_uploader \
 
 aws lambda create-function \
     --region eu-central-1 \
