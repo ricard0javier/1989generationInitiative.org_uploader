@@ -26,7 +26,56 @@ public class HelloTest {
     @Test
     public void test_handleRequest() throws Exception {
 
-        String body = "{\"body\" : {\"token\" : \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3JpY2FyZDBqYXZpZXIuZXUuYXV0aDAuY29tLyIsInN1YiI6ImF1dGgwfDU4NzJiMTVjYmY4ZTYzMzI1MDY1OWEwZSIsImF1ZCI6IlIyZ1RBemJKeGh5NnZnVUQxMW51VEhGY3JteGR0VDJOIiwiZXhwIjoxNDg0ODE2MjIwLCJpYXQiOjE0ODQ3ODAyMjB9.RLuD2PC9yEDyiN5Wv-mXQPManoyFms3nFGwKxo2IvXo\",\"bucket\" : \"static.1989generationinitiative.org\",\"key\" : \"data/test.json\",\"body\" : \"Hello world with JAVA\"}}";
+        String body = "{\n" +
+                "    \"resource\": \"/1989generationinitiative_uploader\",\n" +
+                "    \"path\": \"/1989generationinitiative_uploader\",\n" +
+                "    \"httpMethod\": \"POST\",\n" +
+                "    \"headers\": {\n" +
+                "        \"Accept\": \"*/*\",\n" +
+                "        \"CloudFront-Forwarded-Proto\": \"https\",\n" +
+                "        \"CloudFront-Is-Desktop-Viewer\": \"true\",\n" +
+                "        \"CloudFront-Is-Mobile-Viewer\": \"false\",\n" +
+                "        \"CloudFront-Is-SmartTV-Viewer\": \"false\",\n" +
+                "        \"CloudFront-Is-Tablet-Viewer\": \"false\",\n" +
+                "        \"CloudFront-Viewer-Country\": \"GB\",\n" +
+                "        \"Content-Type\": \"application/x-www-form-urlencoded\",\n" +
+                "        \"Host\": \"6e89359u4k.execute-api.eu-central-1.amazonaws.com\",\n" +
+                "        \"User-Agent\": \"curl/7.51.0\",\n" +
+                "        \"Via\": \"1.1 64cab1877f302ea74232c74b1e181862.cloudfront.net (CloudFront)\",\n" +
+                "        \"X-Amz-Cf-Id\": \"Vh721KbGfYNQGwzct7RLS0GiA0SP4pA91z3cfOxXG34Curdqbmtm5g==\",\n" +
+                "        \"X-Forwarded-For\": \"90.192.116.137, 54.239.166.77\",\n" +
+                "        \"X-Forwarded-Port\": \"443\",\n" +
+                "        \"X-Forwarded-Proto\": \"https\"\n" +
+                "    },\n" +
+                "    \"queryStringParameters\": null,\n" +
+                "    \"pathParameters\": null,\n" +
+                "    \"stageVariables\": null,\n" +
+                "    \"requestContext\": {\n" +
+                "        \"accountId\": \"430132907316\",\n" +
+                "        \"resourceId\": \"3uzpmx\",\n" +
+                "        \"stage\": \"prod\",\n" +
+                "        \"requestId\": \"d687774c-dfdc-11e6-82a8-37edf290889e\",\n" +
+                "        \"identity\": {\n" +
+                "            \"cognitoIdentityPoolId\": null,\n" +
+                "            \"accountId\": null,\n" +
+                "            \"cognitoIdentityId\": null,\n" +
+                "            \"caller\": null,\n" +
+                "            \"apiKey\": null,\n" +
+                "            \"sourceIp\": \"90.192.116.137\",\n" +
+                "            \"accessKey\": null,\n" +
+                "            \"cognitoAuthenticationType\": null,\n" +
+                "            \"cognitoAuthenticationProvider\": null,\n" +
+                "            \"userArn\": null,\n" +
+                "            \"userAgent\": \"curl/7.51.0\",\n" +
+                "            \"user\": null\n" +
+                "        },\n" +
+                "        \"resourcePath\": \"/1989generationinitiative_uploader\",\n" +
+                "        \"httpMethod\": \"POST\",\n" +
+                "        \"apiId\": \"6e89359u4k\"\n" +
+                "    },\n" +
+                "    \"body\": \"{\\\"token\\\" : \\\"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3JpY2FyZDBqYXZpZXIuZXUuYXV0aDAuY29tLyIsInN1YiI6ImF1dGgwfDU4NzJiMTVjYmY4ZTYzMzI1MDY1OWEwZSIsImF1ZCI6IlIyZ1RBemJKeGh5NnZnVUQxMW51VEhGY3JteGR0VDJOIiwiZXhwIjoxNDg0ODE2MjIwLCJpYXQiOjE0ODQ3ODAyMjB9.RLuD2PC9yEDyiN5Wv-mXQPManoyFms3nFGwKxo2IvXo\\\",\\\"bucket\\\" : \\\"static.1989generationinitiative.org\\\",\\\"key\\\" : \\\"data/test.json\\\",\\\"body\\\" : \\\"Hello world with JAVA\\\"}\",\n" +
+                "    \"isBase64Encoded\": false\n" +
+                "}";
         Context context = getContext();
         InputStream inputStream = new StringInputStream(body);
         OutputStream outputStream = new ByteArrayOutputStream(1024);

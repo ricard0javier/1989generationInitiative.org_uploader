@@ -63,7 +63,7 @@ public class Hello implements RequestStreamHandler {
         if (jsonNode == null || !jsonNode.has(nodeKey)) {
             return null;
         }
-        return jsonNode.findValue(nodeKey).toString();
+        return jsonNode.findValue(nodeKey).asText("{}");
     }
 
     private ObjectMapper getObjectMapper() {
