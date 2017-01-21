@@ -32,6 +32,7 @@ dependencies {
     compile "com.amazonaws:aws-lambda-java-core:1.1.0"
     compile 'com.amazonaws:aws-java-sdk-s3'
     testCompile "junit:junit:4.11"
+    testCompile "ch.qos.logback:logback-classic:1.1.7"
 }
 
 task wrapper(type: Wrapper) {
