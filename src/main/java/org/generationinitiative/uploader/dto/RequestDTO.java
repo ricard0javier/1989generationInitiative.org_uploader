@@ -8,8 +8,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class RequestDTO {
-    String token;
-    String bucket;
-    String key;
-    String body;
+    private String token;
+    private String bucket;
+    private String key;
+    private String body;
 }
