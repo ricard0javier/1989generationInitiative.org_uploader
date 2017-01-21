@@ -33,7 +33,7 @@ public class Hello {
     }
 
     @SneakyThrows
-    public String handleRequest(Map<String, String> requestString, Context context) {
+    public String handleRequest(Map<String, Object> requestMap, Context context) {
 
         ResultDTO resultDTO = new ResultDTO();
 
@@ -41,9 +41,9 @@ public class Hello {
         objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
         objectMapper.disable(SerializationFeature.FAIL_ON_EMPTY_BEANS);
         LambdaLogger logger = context.getLogger();
-        logger.log("request:\n" + requestString);
+        logger.log("request:\n" + requestMap);
 
-        String bodyString = requestString.get("body");
+        String bodyString = (String) requestMap.get("body");
         RequestDTO request = objectMapper.readValue(bodyString, RequestDTO.class);
 
         if (!isTokenValid(request.getToken())) {

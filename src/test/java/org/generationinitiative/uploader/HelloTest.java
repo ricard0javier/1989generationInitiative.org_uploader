@@ -14,10 +14,6 @@ import java.util.Map;
 @Slf4j
 public class HelloTest {
 
-    public static final String TOKEN = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3JpY2FyZDBqYXZpZXIuZXUuYXV0aDAuY29tLyIsInN1YiI6ImF1dGgwfDU4NzJiMTVjYmY4ZTYzMzI1MDY1OWEwZSIsImF1ZCI6IlIyZ1RBemJKeGh5NnZnVUQxMW51VEhGY3JteGR0VDJOIiwiZXhwIjoxNDg0ODE2MjIwLCJpYXQiOjE0ODQ3ODAyMjB9.RLuD2PC9yEDyiN5Wv-mXQPManoyFms3nFGwKxo2IvXo";
-    public static final String BUCKET = "static.1989generationinitiative.org";
-    public static final String KEY = "data/test.json";
-    public static final String BODY = "Hello world with JAVA";
     private Hello target;
 
     @Before
@@ -29,7 +25,7 @@ public class HelloTest {
     public void test_handleRequest() throws Exception {
 
         System.setProperty("JWT_CLIENT_SECRET", "secret");
-        Map<String, String> request = new HashMap<>();
+        Map<String, Object> request = new HashMap<>();
         request.put("body", "{\"token\" : \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3JpY2FyZDBqYXZpZXIuZXUuYXV0aDAuY29tLyIsInN1YiI6ImF1dGgwfDU4NzJiMTVjYmY4ZTYzMzI1MDY1OWEwZSIsImF1ZCI6IlIyZ1RBemJKeGh5NnZnVUQxMW51VEhGY3JteGR0VDJOIiwiZXhwIjoxNDg0ODE2MjIwLCJpYXQiOjE0ODQ3ODAyMjB9.RLuD2PC9yEDyiN5Wv-mXQPManoyFms3nFGwKxo2IvXo\",\"bucket\" : \"static.1989generationinitiative.org\",\"key\" : \"data/test.json\",\"body\" : \"Hello world with JAVA\"}");
         Context context = getContext();
         target.handleRequest(request, context);
