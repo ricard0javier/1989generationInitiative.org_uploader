@@ -8,12 +8,16 @@ import com.amazonaws.util.StringInputStream;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTVerificationException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
 import org.generationinitiative.uploader.dto.RequestDTO;
 import org.generationinitiative.uploader.dto.ResultDTO;
 
 import java.io.UnsupportedEncodingException;
 
+@Slf4j
 public class Hello implements RequestHandler<RequestDTO, ResultDTO> {
 
     private static final int STATUS_UNAUTHORISED = 401;
@@ -25,6 +29,12 @@ public class Hello implements RequestHandler<RequestDTO, ResultDTO> {
     public ResultDTO handleRequest(RequestDTO request, Context context) {
 
         ResultDTO resultDTO = new ResultDTO();
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
+        log.info("context:\n {}", objectMapper.writeValueAsString(context));
+        log.info("request:\n {}", objectMapper.writeValueAsString(request));
+
 
         if (!isTokenValid(request.getToken())) {
             resultDTO.setStatus(STATUS_UNAUTHORISED);
