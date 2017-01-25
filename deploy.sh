@@ -11,6 +11,7 @@ aws lambda create-function \
     --role arn:aws:iam::430132907316:role/initiativeRole \
     --handler org.generationinitiative.uploader.Hello::handleRequest \
     --runtime java8 \
+    --timeout 10 \
     --environment Variables={JWT_CLIENT_SECRET=To_Be_Replaced}
 
 echo "Creating alias"

@@ -56,8 +56,6 @@ public class Hello implements RequestStreamHandler {
         LambdaLogger logger = getLogger(context);
 
         String inputString = convertToString(input);
-        logger.log("input:\n" + inputString);
-        logger.log("output:\n" + output.toString());
 
         String body = extract(inputString, "body");
 
@@ -67,7 +65,6 @@ public class Hello implements RequestStreamHandler {
 
         output.write(result.getBytes(STREAMS_ENCODING));
 
-        logger.log("output:\n" + output.toString());
     }
 
     private String convertToString(InputStream inputStream) throws IOException {
@@ -119,6 +116,7 @@ public class Hello implements RequestStreamHandler {
 
         if (!isTokenValid(request.getToken())) {
             resultDTO.setStatusCode(HTTP_UNAUTHORIZED);
+            logger.log("unauthorised");
             return objectMapper.writeValueAsString(resultDTO);
         }
 
@@ -128,7 +126,12 @@ public class Hello implements RequestStreamHandler {
         byte[] resultByte = DigestUtils.md5(stringInputStream);
         String streamMD5 = new String(Base64.encodeBase64(resultByte));
         metadata.setContentMD5(streamMD5);
+        metadata.setContentLength(request.getBody().getBytes().length);
 
+        // avoid leaving the stream in the last byte position
+        stringInputStream.reset();
+
+        logger.log("uploading to bucket '" + request.getBucket() + "', with key '" + request.getKey() + "'");
         s3.putObject(request.getBucket(), request.getKey(), stringInputStream, metadata);
 
         return objectMapper.writeValueAsString(resultDTO);
