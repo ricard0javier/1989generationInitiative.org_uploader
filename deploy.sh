@@ -1,7 +1,9 @@
+echo "Deleting previous function"
 aws lambda delete-function \
     --region eu-central-1 \
     --function-name 1989generationinitiative_uploader \
 
+echo "Creating function"
 aws lambda create-function \
     --region eu-central-1 \
     --function-name 1989generationinitiative_uploader \
@@ -11,7 +13,11 @@ aws lambda create-function \
     --runtime java8 \
     --environment Variables={JWT_CLIENT_SECRET=To_Be_Replaced}
 
+echo "Creating alias"
 aws lambda create-alias \
     --function-name 1989generationinitiative_uploader \
     --name 89ers_uploader_alias \
+    --region eu-central-1 \
     --function-version \$LATEST
+
+echo "DONE"
