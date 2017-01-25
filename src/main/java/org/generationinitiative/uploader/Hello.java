@@ -118,7 +118,7 @@ public class Hello implements RequestStreamHandler {
         RequestDTO request = objectMapper.readValue(requestBody, RequestDTO.class);
 
         if (!isTokenValid(request.getToken())) {
-            resultDTO.setStatus(HTTP_UNAUTHORIZED);
+            resultDTO.setStatusCode(HTTP_UNAUTHORIZED);
             return objectMapper.writeValueAsString(resultDTO);
         }
 
