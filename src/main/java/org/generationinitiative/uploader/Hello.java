@@ -56,7 +56,8 @@ public class Hello implements RequestStreamHandler {
         LambdaLogger logger = getLogger(context);
 
         String inputString = convertToString(input);
-        logger.log("request:\n" + inputString);
+        logger.log("input:\n" + inputString);
+        logger.log("output:\n" + output.toString());
 
         String body = extract(inputString, "body");
 
@@ -65,6 +66,8 @@ public class Hello implements RequestStreamHandler {
         result = result == null ? DEFAULT_BODY : result;
 
         output.write(result.getBytes(STREAMS_ENCODING));
+
+        logger.log("output:\n" + output.toString());
     }
 
     private String convertToString(InputStream inputStream) throws IOException {
